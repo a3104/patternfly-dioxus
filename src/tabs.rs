@@ -1,21 +1,12 @@
-use std::rc::Rc;
 
 use dioxus::{prelude::*};
 use dioxus::fermi::prelude::*;
 
 static SELECTED_CONTENTS: Atom<String> = |_| "".to_string();
 
-
-
-
-#[derive(Clone)]
-struct SelectedContents(String);
-
-
 #[allow(non_snake_case)]
 #[inline_props]
 pub fn PfTabs<'a>(cx: Scope<'a>, children: Element<'a>) -> Element<'a> {
-    // let c = &children.clone().to_owned();
     let selected_contents = use_atom_state(&cx, SELECTED_CONTENTS);
     cx.render(rsx! {
         div { class: "pf-c-tabs",
@@ -25,7 +16,6 @@ pub fn PfTabs<'a>(cx: Scope<'a>, children: Element<'a>) -> Element<'a> {
             ul { class: "pf-c-tabs__list",
                 children
             }
-
 
         } 
         section {
