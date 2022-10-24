@@ -6,6 +6,7 @@ categories = ["wasm", "web-programming", "gui"]
 keywords = ["dioxus", "patternfly", "web", "html"]
 license = "MIT"
 readme = "README.md"
+description = "Patternfly v4 Component for Dioxus"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
