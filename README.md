@@ -1,23 +1,27 @@
-mod accordion;
-mod alert;
-#[allow(non_snake_case, dead_code)]
-mod badge;
-mod datepicker;
-mod spiner;
-mod tabs;
-mod tooltip;
-pub use accordion::*;
-pub use alert::*;
-pub use badge::*;
-pub use datepicker::*;
-pub use dioxus::prelude::*;
-pub use spiner::*;
-pub use tabs::*;
-pub use tooltip::*;
+# Patternfly components for Yew
 
-fn main() {
-    dioxus::web::launch(App);
-}
+[Dioxus](https://github.com/DioxusLabs/dioxus) Component for [Patternfly](https://www.patternfly.org/v4/).
+
+## Currently available components.
+
+* PfBadge 
+* PfAlert
+* PfAccordion
+* PfTooltip
+* PfDatePicker
+* Spinner
+    * PfLargeSpinner
+    * PfMiddleSpinner
+    * PfSmallSpinner
+* PfTabs
+
+
+
+
+
+for examples...
+
+```
 fn App(cx: Scope) -> Element {
     let date = use_state(&cx, || "2020-03-05".to_string());
     cx.render(rsx! {
@@ -69,4 +73,4 @@ fn App(cx: Scope) -> Element {
         }
 
     })
-}
+```
