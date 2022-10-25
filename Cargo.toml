@@ -1,10 +1,11 @@
 [package]
 name = "patternfly-dioxus"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
+repository = "https://github.com/a3104/patternfly-dioxus"
 categories = ["wasm", "web-programming", "gui"]
 keywords = ["dioxus", "patternfly", "web", "html"]
-license = "MIT"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 description = "Patternfly v4 Component for Dioxus"
 
@@ -15,4 +16,8 @@ dioxus = { version = "0.2.4", features = ["web","fermi","ssr"] }
 serde = "1"
 gloo = "0.8"
 serde_json = "1"
+anyhow = "1.0.53"
 
+[profile.release]
+lto = true
+opt-level = 's'
