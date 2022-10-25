@@ -7,6 +7,10 @@ mod spiner;
 mod tabs;
 mod tooltip;
 mod modal;
+mod toast;
+mod chip;
+use std::time::Duration;
+
 pub use accordion::*;
 pub use alert::*;
 pub use badge::*;
@@ -16,6 +20,8 @@ pub use spiner::*;
 pub use tabs::*;
 pub use tooltip::*;
 pub use modal::*;
+pub use toast::*;
+pub use chip::*;
 
 
 fn main() {
@@ -23,8 +29,14 @@ fn main() {
 }
 fn App(cx: Scope) -> Element {
     let date = use_state(&cx, || "2020-03-05".to_string());
-    let modal_is_open = use_state(&cx, || true);
+    let modal_is_open = use_state(&cx, || false);
     let smallmodal_is_open = use_state(&cx, || false);
+    let toaster_timer =  Some(Duration::from_secs(5));
+    let chips = vec!["chip1".to_string(), "chip2".to_string(),"chip3".to_string()];
+    let chip_states = use_state(&cx, || chips);
+    let chips = chip_states.get().clone();
+    let chips_str:String = chips.iter().map(|x| x.clone()).collect::<Vec<_>>().join(", ");
+
     cx.render(rsx! {
         div{
             "aaa",
@@ -76,14 +88,35 @@ fn App(cx: Scope) -> Element {
             title: "modal", is_close: modal_is_open,
             "modal-content"
         }
-        PfSmallModal{
-            title: "smallmodal", is_close: smallmodal_is_open,
+        span {hidden: "true",
+            PfSmallModal{
+                title: "smallmodal", is_close: smallmodal_is_open,
+                PfAlert{
+                    variation: Variation::Danger,
+                    title: "title",
+                    "smallmodal-content"
+                }
+            }
+    
+        }
+
+        PfToast {
+            timeout: Duration::from_secs(5),
             PfAlert{
                 variation: Variation::Danger,
                 title: "title",
-                "smallmodal-content"
+                "this alert will be closed after 5 seconds"
             }
         }
+
+        PfChip{
+            "chip"
+        }
+        PfChipGroup{
+            chips: chip_states,
+        }
+
+        "{chips_str}"
 
     })
 }

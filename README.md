@@ -14,6 +14,8 @@ append to index.html
 ```
     <link data-trunk rel="scss" href="node_modules/@patternfly/patternfly/patternfly.scss">
     <link data-trunk rel="scss" href="node_modules/@patternfly/patternfly/patternfly-addons.scss">
+    <link data-trunk rel="copy-dir" href="node_modules/@patternfly/patternfly/assets">
+
 ```
 
 
