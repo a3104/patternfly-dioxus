@@ -13,20 +13,21 @@ pub fn PfChip<'a>(cx: Scope<'a>, use_close_button: Option<bool>, children: Eleme
 
             span { class: "pf-c-chip",
                 span { class: "pf-c-chip__text", children },
-            }
-            use_close_button.then(|| rsx!{
-                button {
-                    onclick: |_| { is_close.set(true); },
-                    class: "pf-c-button pf-m-plain",
-                    r#type: "button",
-                    aria_labelledby: "remove_chip_one chip_one",
-                    aria_label: "Remove",
-                    i {
-                        class: "fas fa-times",
-                        aria_hidden: "true",
+            
+                use_close_button.then(|| rsx!{
+                    button {
+                        onclick: |_| { is_close.set(true); },
+                        class: "pf-c-button pf-m-plain",
+                        r#type: "button",
+                        aria_labelledby: "remove_chip_one chip_one",
+                        aria_label: "Remove",
+                        i {
+                            class: "fas fa-times",
+                            aria_hidden: "true",
+                        }
                     }
-                }
-            })
+                })
+        }
         })
     }
 }
@@ -35,7 +36,6 @@ pub fn PfChip<'a>(cx: Scope<'a>, use_close_button: Option<bool>, children: Eleme
 #[inline_props]
 pub fn PfChipGroup<'a>(cx: Scope<'a>, chips: &'a UseState<Vec<String>>) -> Element {
     let chips = chips.clone();
-    let a = (chips.get()).into_iter().filter(|c| **c != "aaa".to_string()).map(|x| x.clone()).collect::<Vec<_>>();
 
     cx.render(rsx! {
         div {
@@ -46,25 +46,26 @@ pub fn PfChipGroup<'a>(cx: Scope<'a>, chips: &'a UseState<Vec<String>>) -> Eleme
                     class: "pf-c-chip-group__list",
                     role: "list",
                     aria_label: "Chip group list",
+                    
                     chips.get().iter().map(|chip| rsx!{
                         li {
                             class: "pf-c-chip-group__list-item",
                             span{
-                                PfChip { use_close_button: false, "{chip}" }
-                                button {
-                                    onclick: move |_|  {
-                                        let chips = chips.clone();
-                                        let chip_list: Vec<String> = chips.get().iter().filter(|x| *x != chip).map(|x| x.clone()).collect();
-                                         chips.set(chip_list.iter().filter(|x| *x != chip).map(|x| x.clone()).collect::<Vec<_>>()); 
-                                    },
-                                    class: "pf-c-button pf-m-plain",
-                                    r#type: "button",
-                                    aria_labelledby: "remove_chip_one chip_one",
-                                    aria_label: "Remove",
-                                    i {
-                                        style: "margin-left: -22px;",
-                                        class: "fas fa-times",
-                                        aria_hidden: "true",
+                                PfChip { use_close_button: false, "{chip}" 
+                                    button {
+                                        onclick: move |_|  {
+                                            let chips = chips.clone();
+                                            let chip_list: Vec<String> = chips.get().iter().filter(|x| *x != chip).map(|x| x.clone()).collect();
+                                            chips.set(chip_list); 
+                                        },
+                                        class: "pf-c-button pf-m-plain",
+                                        r#type: "button",
+                                        aria_labelledby: "remove_chip_one chip_one",
+                                        aria_label: "Remove",
+                                        i {
+                                            class: "fas fa-times",
+                                            aria_hidden: "true",
+                                        }
                                     }
                                 }
                             }
