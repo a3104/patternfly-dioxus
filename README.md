@@ -33,15 +33,19 @@ append to index.html
     * PfMiddleSpinner
     * PfSmallSpinner
 * PfTabs
+* card
+* Modal
+* Chip
+* Dropdown
+* Toast
+* DatePicker
+* Tabs
+
 
 ## working ...
 
-* Dialog
-* Toast
 * Navi
-* Card
 * Clipboard
-* Dropdown
 
 
 
