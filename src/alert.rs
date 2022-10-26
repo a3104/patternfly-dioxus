@@ -14,9 +14,10 @@ pub enum Variation {
 pub fn PfAlert<'a>(
     cx: Scope<'a>,
     variation: Option<Variation>,
-    description: Option<&'a str>,
+    title: Option<&'a str>,
     children: Element<'a>,
 ) -> Element {
+    let title = title.unwrap_or("");
     let variation = variation.unwrap_or(Variation::Default);
     let css = match variation {
         Variation::Default => "pf-c-alert",
@@ -43,15 +44,11 @@ pub fn PfAlert<'a>(
 
             p { class: "pf-c-alert__title",
                 span { class: "pf-screen-reader", "Default alert:" },
-                children
+                "{title}"
             }
-            {
-                if let Some(description) = description {
-                   rsx!{ p { class: "pf-c-alert__description", "{description}" }}
-                } else {
-                   rsx!("")
-                }
-            }
+                
+            rsx!{ p { class: "pf-c-alert__description", children }}
+    
         },
 
     })
