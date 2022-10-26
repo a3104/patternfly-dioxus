@@ -1,6 +1,7 @@
 # Patternfly components for Dioxus
 
-[Dioxus](https://github.com/DioxusLabs/dioxus) Component for [Patternfly](https://www.patternfly.org/v4/).
+ [Patternfly](https://www.patternfly.org/v4/) Component for [Dioxus](https://github.com/DioxusLabs/dioxus) .
+ 
 
 ## setup
 
