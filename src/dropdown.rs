@@ -7,8 +7,8 @@ pub fn PfDropDownRaw<'a>(
     children: Element<'a>,
     selected: UseState<String>,
 ) -> Element {
-    let is_open = use_state(&cx, || false);
-    let buttoncss = if *is_open.get() {
+    let is_hide = use_state(&cx, || true);
+    let buttoncss = if *is_hide.get() {
         "pf-c-dropdown__toggle"
     } else {
         "pf-c-dropdown__toggle pf-m-expanded"
@@ -16,13 +16,13 @@ pub fn PfDropDownRaw<'a>(
     cx.render(rsx! {
         div { class: "pf-c-dropdown",
             button { class: "{buttoncss}", aria_expanded: "false",
-                onclick: move |_| { is_open.set(!is_open.get()); },
+                onclick: move |_| { is_hide.set(!is_hide.get()); },
                 span { class: "pf-c-dropdown__toggle-text", "{selected}" },
                 span { class: "pf-c-dropdown__toggle-icon",
                     i { class: "fas fa-angle-down", aria_hidden: "false" }
                 }
             }
-            div { class: "pf-c-dropdown__menu", hidden: "{is_open}", onclick:  |_| {is_open.set(!is_open.get());},
+            div { class: "pf-c-dropdown__menu", hidden: "{is_hide}", onclick:  |_| {is_hide.set(!is_hide.get());},
                 children
             }
         }
@@ -48,8 +48,8 @@ pub fn PfDropDownItem<'a>(
 #[allow(non_snake_case)]
 #[inline_props]
 pub fn PfDropDown(cx: Scope, list: Vec<String>, selected: UseState<String>) -> Element {
-    let is_open = use_state(&cx, || false);
-    let buttoncss = if *is_open.get() {
+    let is_hide = use_state(&cx, || true);
+    let buttoncss = if *is_hide.get() {
         "pf-c-dropdown__toggle"
     } else {
         "pf-c-dropdown__toggle pf-m-expanded"
@@ -57,15 +57,15 @@ pub fn PfDropDown(cx: Scope, list: Vec<String>, selected: UseState<String>) -> E
     cx.render(rsx! {
         div { class: "pf-c-dropdown",
             button { class: "{buttoncss}", aria_expanded: "false",
-                onclick: move |_| { is_open.set(!is_open.get()); },
+                onclick: move |_| { is_hide.set(!is_hide.get()); },
                 span { class: "pf-c-dropdown__toggle-text", "{selected}" },
                 span { class: "pf-c-dropdown__toggle-icon",
                     i { class: "fas fa-angle-down", aria_hidden: "false" }
                 }
             }
-            div { class: "pf-c-dropdown__menu", hidden: "{is_open}",
+            div { class: "pf-c-dropdown__menu", hidden: "{is_hide}",
                 list.iter().map(|data|{ rsx!{
-                    a { class: "pf-c-dropdown__menu-item", onclick: move |_| { selected.set(data.clone()); is_open.set(!is_open.get()); },
+                    a { class: "pf-c-dropdown__menu-item", onclick: move |_| { selected.set(data.clone()); is_hide.set(!is_hide.get()); },
                         "{data}"
                     }
                 }})
@@ -77,9 +77,9 @@ pub fn PfDropDown(cx: Scope, list: Vec<String>, selected: UseState<String>) -> E
 #[allow(non_snake_case)]
 #[inline_props]
 pub fn PfDropDownWithId(cx: Scope, list: Vec<(u64, String)>, selected: UseState<u64>) -> Element {
-    let is_open = use_state(&cx, || false);
+    let is_hide = use_state(&cx, || true);
     let selected_str = use_state(&cx, || "".to_string());
-    let buttoncss = if *is_open.get() {
+    let buttoncss = if *is_hide.get() {
         "pf-c-dropdown__toggle"
     } else {
         "pf-c-dropdown__toggle pf-m-expanded"
@@ -87,16 +87,16 @@ pub fn PfDropDownWithId(cx: Scope, list: Vec<(u64, String)>, selected: UseState<
     cx.render(rsx! {
         div { class: "pf-c-dropdown",
             button { class: "{buttoncss}",  aria_expanded: "false",
-                onclick: move |_| { is_open.set(!is_open.get()); },
+                onclick: move |_| { is_hide.set(!is_hide.get()); },
                 span { class: "pf-c-dropdown__toggle-text", "{selected_str}" },
                 span { class: "pf-c-dropdown__toggle-icon",
                     i { class: "fas fa-angle-down", aria_hidden: "false" }
                 }
             }
-            div { class: "pf-c-dropdown__menu", hidden: "{is_open}",
+            div { class: "pf-c-dropdown__menu", hidden: "{is_hide}",
             // list
             list.iter().map(|data|{ rsx!{
-                a { class: "pf-c-dropdown__menu-item", onclick: move |_| { selected_str.set(data.1.clone()) ;selected.set(data.0); is_open.set(!is_open.get()); },
+                a { class: "pf-c-dropdown__menu-item", onclick: move |_| { selected_str.set(data.1.clone()) ;selected.set(data.0); is_hide.set(!is_hide.get()); },
                     "{data.1}"
                 }
             }}),
