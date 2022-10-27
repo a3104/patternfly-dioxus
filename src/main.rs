@@ -10,13 +10,17 @@ mod modal;
 mod toast;
 mod chip;
 mod dropdown;
+mod card;
+mod label;
 use std::time::Duration;
+
 
 pub use accordion::*;
 pub use alert::*;
 pub use badge::*;
 pub use datepicker::*;
 pub use dioxus::prelude::*;
+use patternfly_dioxus::PfCardBody;
 pub use spiner::*;
 pub use tabs::*;
 pub use tooltip::*;
@@ -24,6 +28,8 @@ pub use modal::*;
 pub use toast::*;
 pub use chip::*;
 pub use dropdown::*;
+pub use card::*;
+pub use label::*;
 
 
 fn main() {
@@ -38,12 +44,19 @@ fn App(cx: Scope) -> Element {
     let chips = chip_states.get().clone();
     let chips_str:String = chips.iter().map(|x| x.clone()).collect::<Vec<_>>().join(", ");
     let str_state = use_state(&cx, || "".to_string());
+    let vec_state: &UseState<Vec<String>> = use_state(&cx, || vec!["aaa".to_string(),"bbb".to_string()]);
+
+    let tab_selected_contents = use_state(&cx, || "".to_string());
 
     cx.render(rsx! {
         div{
             "aaa",
             PfBadge {
                 read: true,
+                "1"
+            }
+            PfBadge {
+                read: false,
                 "1"
             }
             PfAlert {
@@ -74,12 +87,17 @@ fn App(cx: Scope) -> Element {
             PfMiddleSpinner {}
             PfSmallSpinner {}
 
+            // Set the same state for the selected_contents attribute.
+            // The content information of the tab selected by this UseState<String> is synchronized with the upper element.
             PfTabs {
+                selected_contents: tab_selected_contents.clone(),
                 PfTab {
+                    selected_contents: tab_selected_contents.clone(),
                     title: "tab1",
                     "tab1-content"
                 },
                 PfTab {
+                    selected_contents: tab_selected_contents.clone(),
                     title: "tab2",
                     span {style:"color:red;", "tab2-content"}
                 }
@@ -104,6 +122,14 @@ fn App(cx: Scope) -> Element {
 
         PfToast {
             timeout: Duration::from_secs(5),
+            PfSmallModal{
+                title: "toast", is_close: smallmodal_is_open,
+                PfAlert{
+                    variation: Variation::Danger,
+                    title: "title",
+                    "this modal will be close after 5 seconds"
+                }
+            }
             PfAlert{
                 variation: Variation::Danger,
                 title: "title",
@@ -147,8 +173,31 @@ fn App(cx: Scope) -> Element {
             },
 
         }
-         
-       
+        div { class: "pf-l-bullseye",
+        
+            PfCard {
+                PfCardBody{
+                    div {style:"color: red; width: 220px;text-align: center;","aaa",}
+                }
+            }
+            PfCard {
+                PfCardBody{
+                    div {style:"color: red;","bbb",}
+                }
+            }
+            
+        }
+        PfLabel{
+            "label"
+        }
+        PfLabel {
+            icon_name: "fa-info-circle",
+            append_class: "pf-m-blue",
+            "blue label"
+        }
+        PfLabelGroup{
+            selected: vec_state,
+        }
 
     })
 }

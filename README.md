@@ -18,6 +18,11 @@ append to index.html
 
 ```
 
+## incompatible change
+
+### v0.2.1
+
+PfTab component: This component was using GlobalState, but we changed it to pass UseState to both parent and child.
 
 
 
