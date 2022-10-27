@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfChip<'a>(cx: Scope<'a>, use_close_button: Option<bool>, children: Element<'a>) -> Element {
     let use_close_button = use_close_button.unwrap_or(true);
@@ -32,7 +32,7 @@ pub fn PfChip<'a>(cx: Scope<'a>, use_close_button: Option<bool>, children: Eleme
     }
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfChipGroup<'a>(cx: Scope<'a>, chips: &'a UseState<Vec<String>>) -> Element {
     let chips = chips.clone();

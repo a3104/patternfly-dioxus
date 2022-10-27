@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfLabel<'a>(cx: Scope<'a>, icon_name: Option<&'a str>, append_class: Option<&'a str>, children: Element<'a>) -> Element {
     let append_class = format!("pf-c-label {}", append_class.unwrap_or(""));
@@ -19,7 +19,7 @@ pub fn PfLabel<'a>(cx: Scope<'a>, icon_name: Option<&'a str>, append_class: Opti
     }
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfLabelGroup<'a> (cx: Scope, selected: &'a UseState<Vec<String>>) -> Element {
     let is_close = use_state(&cx, || false);

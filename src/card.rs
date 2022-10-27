@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfCard<'a>(cx: Scope<'a>, children: Element<'a>) -> Element {
     cx.render(rsx! {
@@ -8,7 +8,7 @@ pub fn PfCard<'a>(cx: Scope<'a>, children: Element<'a>) -> Element {
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfCardTitle<'a>(cx: Scope<'a>, children: Element<'a>) -> Element {
     cx.render(rsx! {
@@ -16,7 +16,7 @@ pub fn PfCardTitle<'a>(cx: Scope<'a>, children: Element<'a>) -> Element {
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfCardBody<'a>(cx: Scope<'a>, children: Element<'a>) -> Element {
     cx.render(rsx! {

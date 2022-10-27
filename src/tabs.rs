@@ -1,9 +1,8 @@
 
 use dioxus::{prelude::*};
-use dioxus::fermi::prelude::*;
 
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfTabs<'a>(cx: Scope<'a>, selected_contents: UseState<String>, children: Element<'a>) -> Element<'a> {
     cx.render(rsx! {
@@ -29,7 +28,7 @@ pub fn PfTabs<'a>(cx: Scope<'a>, selected_contents: UseState<String>, children: 
     }) 
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfTab<'a>(cx: Scope<'a>, title: &'a str,selected_contents: UseState<String>, children: Element<'a>) -> Element {
 

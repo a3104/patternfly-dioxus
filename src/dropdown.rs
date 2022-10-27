@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfDropDownRaw<'a>(
     cx: Scope<'a>,
@@ -29,7 +29,7 @@ pub fn PfDropDownRaw<'a>(
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfDropDownItem<'a>(
     cx: Scope<'a>,
@@ -45,7 +45,7 @@ pub fn PfDropDownItem<'a>(
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfDropDown(cx: Scope, list: Vec<String>, selected: UseState<String>) -> Element {
     let is_hide = use_state(&cx, || true);
@@ -74,7 +74,7 @@ pub fn PfDropDown(cx: Scope, list: Vec<String>, selected: UseState<String>) -> E
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfDropDownWithId(cx: Scope, list: Vec<(u64, String)>, selected: UseState<u64>) -> Element {
     let is_hide = use_state(&cx, || true);
