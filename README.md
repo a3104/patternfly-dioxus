@@ -196,6 +196,34 @@ fn App(cx: Scope) -> Element {
                 }
             },
 
+               div { class: "pf-l-bullseye",
+        
+            PfCard {
+                PfCardBody{
+                    div {style:"color: red; width: 220px;text-align: center;","aaa",}
+                }
+            }
+            PfCard {
+                PfCardBody{
+                    div {style:"color: red;","bbb",}
+                }
+            }
+            
+        }
+        PfLabel{
+            "label"
+        }
+        PfLabel {
+            icon_name: "fa-info-circle",
+            append_class: "pf-m-blue",
+            "blue label"
+        }
+        PfLabelGroup{
+            selected: vec_state,
+        }
+
+    })
+
         }
         div { class: "pf-l-bullseye",
 
