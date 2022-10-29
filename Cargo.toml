@@ -1,6 +1,6 @@
 [package]
 name = "patternfly-dioxus"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 repository = "https://github.com/a3104/patternfly-dioxus"
 categories = ["wasm", "web-programming", "gui"]

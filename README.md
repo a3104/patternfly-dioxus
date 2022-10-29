@@ -68,12 +68,19 @@ fn App(cx: Scope) -> Element {
     let chips = chip_states.get().clone();
     let chips_str:String = chips.iter().map(|x| x.clone()).collect::<Vec<_>>().join(", ");
     let str_state = use_state(&cx, || "".to_string());
+    let vec_state: &UseState<Vec<String>> = use_state(&cx, || vec!["aaa".to_string(),"bbb".to_string()]);
+
+    let tab_selected_contents = use_state(&cx, || "".to_string());
 
     cx.render(rsx! {
         div{
             "aaa",
             PfBadge {
                 read: true,
+                "1"
+            }
+            PfBadge {
+                read: false,
                 "1"
             }
             PfAlert {
@@ -104,17 +111,22 @@ fn App(cx: Scope) -> Element {
             PfMiddleSpinner {}
             PfSmallSpinner {}
 
+            // Set the same state for the selected_contents attribute.
+            // The content information of the tab selected by this UseState<String> is synchronized with the upper element.
             PfTabs {
+                selected_contents: tab_selected_contents.clone(),
                 PfTab {
+                    selected_contents: tab_selected_contents.clone(),
                     title: "tab1",
                     "tab1-content"
                 },
                 PfTab {
+                    selected_contents: tab_selected_contents.clone(),
                     title: "tab2",
                     span {style:"color:red;", "tab2-content"}
                 }
             }
-            
+
         }
         PfModal {
             title: "modal", is_close: modal_is_open,
@@ -129,11 +141,19 @@ fn App(cx: Scope) -> Element {
                     "smallmodal-content"
                 }
             }
-    
+
         }
 
         PfToast {
             timeout: Duration::from_secs(5),
+            PfSmallModal{
+                title: "toast", is_close: smallmodal_is_open,
+                PfAlert{
+                    variation: Variation::Danger,
+                    title: "title",
+                    "this modal will be close after 5 seconds"
+                }
+            }
             PfAlert{
                 variation: Variation::Danger,
                 title: "title",
@@ -176,8 +196,9 @@ fn App(cx: Scope) -> Element {
                 }
             },
 
-               div { class: "pf-l-bullseye",
-        
+        }
+        div { class: "pf-l-bullseye",
+
             PfCard {
                 PfCardBody{
                     div {style:"color: red; width: 220px;text-align: center;","aaa",}
@@ -188,7 +209,7 @@ fn App(cx: Scope) -> Element {
                     div {style:"color: red;","bbb",}
                 }
             }
-            
+
         }
         PfLabel{
             "label"
@@ -201,12 +222,6 @@ fn App(cx: Scope) -> Element {
         PfLabelGroup{
             selected: vec_state,
         }
-
-    })
-
-        }
-         
-       
 
     })
 }
