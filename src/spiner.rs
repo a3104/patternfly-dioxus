@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 pub fn PfLargeSpinner(cx: Scope) -> Element {
 
     
@@ -12,7 +12,7 @@ pub fn PfLargeSpinner(cx: Scope) -> Element {
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 pub fn PfSmallSpinner(cx: Scope) -> Element {
 
     
@@ -24,7 +24,7 @@ pub fn PfSmallSpinner(cx: Scope) -> Element {
     })
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 pub fn PfMiddleSpinner(cx: Scope) -> Element {
     cx.render(rsx! {
         svg { class: "pf-c-spinner pf-m-md", role: "progressbar", view_box: "0 0 100 100",

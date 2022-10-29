@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfSmallModal<'a>(
     cx: Scope<'a>,
@@ -60,7 +60,7 @@ pub fn PfSmallModal<'a>(
     }
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfModal<'a>(
     cx: Scope<'a>,

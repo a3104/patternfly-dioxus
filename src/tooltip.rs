@@ -8,7 +8,7 @@ pub enum Orientation {
     Right,
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfTooltip<'a>(
     cx: Scope,

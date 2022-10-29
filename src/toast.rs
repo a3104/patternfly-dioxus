@@ -2,7 +2,7 @@ use std::time::Duration;
 
 use dioxus::prelude::*;
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
 pub fn PfToast<'a>(cx: Scope<'a>, timeout: Option<Duration>, children: Element<'a>) -> Element {
     let is_hidden = use_state(&cx, || false);

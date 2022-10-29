@@ -1,13 +1,10 @@
 
 use dioxus::{prelude::*};
-use dioxus::fermi::prelude::*;
 
-static SELECTED_CONTENTS: Atom<String> = |_| "".to_string();
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
-pub fn PfTabs<'a>(cx: Scope<'a>, children: Element<'a>) -> Element<'a> {
-    let selected_contents = use_atom_state(&cx, SELECTED_CONTENTS);
+pub fn PfTabs<'a>(cx: Scope<'a>, selected_contents: UseState<String>, children: Element<'a>) -> Element<'a> {
     cx.render(rsx! {
         div { class: "pf-c-tabs",
             button { class: "pf-c-tabs__scroll-button", r#type: "button", disabled: "false", aria_hidden: "false", aria_label: "Scroll left",
@@ -31,14 +28,13 @@ pub fn PfTabs<'a>(cx: Scope<'a>, children: Element<'a>) -> Element<'a> {
     }) 
 }
 
-#[allow(non_snake_case)]
+#[allow(non_snake_case,dead_code)]
 #[inline_props]
-pub fn PfTab<'a>(cx: Scope<'a>, title: &'a str, children: Element<'a>) -> Element {
+pub fn PfTab<'a>(cx: Scope<'a>, title: &'a str,selected_contents: UseState<String>, children: Element<'a>) -> Element {
 
     //I didn't know how to use children to `use_atom_state`, So I converted the element to a string
     let children_string = dioxus::ssr::render_lazy(rsx!{span{children}});
     
-    let selected_contents = use_atom_state(&cx, SELECTED_CONTENTS);
     
     cx.render(rsx! {
         li { class: "pf-c-tabs__item",

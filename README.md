@@ -18,6 +18,11 @@ append to index.html
 
 ```
 
+## incompatible change
+
+### v0.2.1
+
+PfTab component: This component was using GlobalState, but we changed it to pass UseState to both parent and child.
 
 
 
@@ -40,6 +45,7 @@ append to index.html
 * Toast
 * DatePicker
 * Tabs
+* Label, LabelGroup
 
 
 ## working ...
@@ -169,6 +175,34 @@ fn App(cx: Scope) -> Element {
                     i {class: "fas fa-angle-right", aria_hidden: "false" }
                 }
             },
+
+               div { class: "pf-l-bullseye",
+        
+            PfCard {
+                PfCardBody{
+                    div {style:"color: red; width: 220px;text-align: center;","aaa",}
+                }
+            }
+            PfCard {
+                PfCardBody{
+                    div {style:"color: red;","bbb",}
+                }
+            }
+            
+        }
+        PfLabel{
+            "label"
+        }
+        PfLabel {
+            icon_name: "fa-info-circle",
+            append_class: "pf-m-blue",
+            "blue label"
+        }
+        PfLabelGroup{
+            selected: vec_state,
+        }
+
+    })
 
         }
          
