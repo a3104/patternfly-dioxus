@@ -33,7 +33,7 @@ pub fn PfTabs<'a>(cx: Scope<'a>, selected_contents: UseState<String>, children: 
 pub fn PfTab<'a>(cx: Scope<'a>, title: &'a str,selected_contents: UseState<String>, children: Element<'a>) -> Element {
 
     //I didn't know how to use children to `use_atom_state`, So I converted the element to a string
-    let children_string = dioxus::ssr::render_lazy(rsx!{span{children}});
+    let children_string = dioxus_ssr::render_lazy(rsx!{span{children}});
     
     
     cx.render(rsx! {

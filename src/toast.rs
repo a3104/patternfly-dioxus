@@ -10,8 +10,7 @@ pub fn PfToast<'a>(cx: Scope<'a>, timeout: Option<Duration>, children: Element<'
         let duration = duration.clone();
         let is_hidden = is_hidden.clone();
         use_effect(&cx, (), |()| async move {
-            // timer by gloo
-            let _ = gloo::timers::future::sleep(duration).await;
+            let _ = tokio::time::sleep(duration).await;
             is_hidden.set(true);
         });
     }
