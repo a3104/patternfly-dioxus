@@ -33,7 +33,7 @@ pub use label::*;
 
 
 fn main() {
-    dioxus::web::launch(App);
+    dioxus_web::launch(App);
 }
 fn App(cx: Scope) -> Element {
     let date = use_state(&cx, || "2020-03-05".to_string());

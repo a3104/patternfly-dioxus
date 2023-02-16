@@ -1,6 +1,6 @@
 [package]
 name = "patternfly-dioxus"
-version = "0.2.3"
+version = "0.3.0"
 edition = "2021"
 repository = "https://github.com/a3104/patternfly-dioxus"
 categories = ["wasm", "web-programming", "gui"]
@@ -12,11 +12,14 @@ description = "Patternfly v4 Component for Dioxus"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { version = "0.2.4", features = ["web","fermi","ssr"] }
+dioxus = { version = "0.3.1" }
+dioxus-web = "0.3.0"
+dioxus-ssr = { version = "0.3.0" }
 serde = "1"
 gloo = "0.8"
 serde_json = "1"
 anyhow = "1.0.53"
+tokio = { version = "1.14.0", features = ["full"] }
 
 [profile.release]
 lto = true
